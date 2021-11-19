@@ -8,7 +8,7 @@
 
 ### Architecture overview:
 
-Etcd three node cluster (DCS:Distributed Consensus Store):
+Etcd three node cluster (DCS:Distributed Configuration Store):
 
 <img src="pictures/etcd_three_node.png" width="600">
 
