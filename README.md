@@ -45,7 +45,7 @@ $ terraform apply
 
 ### Provisioning PostgreSQL HA Cluster:
 
-Note: The cluster is configured with a single primary and two asynchronous streaming replica.
+Note: The cluster is configured with a single primary and two asynchronous streaming replica in this example:
 
 ```
 ### Install Ansible on control node (laptop)
