@@ -73,7 +73,7 @@ root@master001:~# patronictl topology
 +------------+-----------------+---------+---------+----+-----------+
 root@master001:~# 
 
-### postgres user password: postgres-pass
+### Note: postgres user password: postgres-pass
 
 root@master001:~# psql -h localhost -U postgres
 Password for user postgres: 
