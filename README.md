@@ -1,5 +1,7 @@
 ## PostgreSQL High-Availability Cluster by Patroni using ETCD cluster. Automating deployment with Ansible.
 
+Patroni is a cluster manager used to customize and automate deployment and maintenance of PostgreSQL HA (High Availability) clusters. It uses distributed configuration stores like etcd, Consul, ZooKeeper or Kubernetes for maximum accessibility.
+
 ### Architecture overview:
 
 Etcd three node cluster (DCS:Distributed Consensus Store):
@@ -32,7 +34,7 @@ hcloud_token = "XXXXXXXXXXXXXXXXX"
 
 $ terraform init
 $ terraform plan
-$ terrafrom apply
+$ terraform apply
 
 ```
 <img src="pictures/postgre-ha-servers.png" width="900">
