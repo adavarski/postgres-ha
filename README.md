@@ -2,6 +2,8 @@
 
 Patroni is a cluster manager used to customize and automate deployment and maintenance of PostgreSQL HA (High Availability) clusters. It uses distributed configuration stores like etcd, Consul, ZooKeeper or Kubernetes for maximum accessibility.
 
+etcd is a distributed reliable key-value store for the most critical data of a distributed system. etcd is written in Go and uses the Raft consensus algorithm to manage a highly-available replicated log. It is used by Patroni to store information about the status of the cluster and PostgreSQL configuration parameters.
+
 ### Architecture overview:
 
 Etcd three node cluster (DCS:Distributed Consensus Store):
@@ -89,7 +91,7 @@ postgres=# \l
 (3 rows)
 
 ````
-### HAProxy (OPTIONAL)
+### HAProxy (OPTIONAL: PostgreSQL High-Availability with Load Balancing)
 
 We need to have HAProxy to listen for connections on the PostgreSQL standard port 5432. Then HAProxy should check the patroni api to determine which node is the primary.
 
