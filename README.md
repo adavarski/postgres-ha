@@ -42,8 +42,13 @@ $ terraform apply
 ### Provisioning PostgreSQL HA Cluster:
 
 ```
+### Install Ansible on control node (laptop)
+$ sudo apt update && sudo apt install python3-pip sshpass git -y
+$ sudo pip3 install ansible
+
 $ cd ../postgresql_cluster
 ### edit ansible inventory file and run playbook
+
 $ ansible-playbook -i ./inventory deploy_pgcluster.yml
 ...
 PLAY RECAP ************************************************************************************************************************************************************************************************************************
