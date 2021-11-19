@@ -45,6 +45,8 @@ $ terraform apply
 
 ### Provisioning PostgreSQL HA Cluster:
 
+Note: The cluster is configured with a single primary and two asynchronous streaming replica.
+
 ```
 ### Install Ansible on control node (laptop)
 $ sudo apt update && sudo apt install python3-pip sshpass git -y
