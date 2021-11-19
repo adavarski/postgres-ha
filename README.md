@@ -19,7 +19,7 @@ HAProxy(OPTIONAL):
 <img src="pictures/haproxy_loadblance_postgres.png" width="600">
 
 
-### Provision 3 hetzner VMs with terraform for ansible testing:
+### Provision 3 Hetzner Cloud VMs with terraform for ansible testing:
 
 ```
 $ git clone https://github.com/adavarski/postgres-ha; cd postgres-ha
@@ -91,7 +91,7 @@ postgres=# \l
 (3 rows)
 
 ````
-### HAProxy (OPTIONAL: PostgreSQL High-Availability with Load Balancing)
+### HAProxy (OPTIONAL: PostgreSQL High-Availability with HAProxy Load Balancing. Note: We can use Hetzner Load Balancer also)
 
 We need to have HAProxy to listen for connections on the PostgreSQL standard port 5432. Then HAProxy should check the patroni api to determine which node is the primary.
 
