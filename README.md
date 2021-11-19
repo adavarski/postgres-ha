@@ -4,6 +4,8 @@ Patroni is a cluster manager used to customize and automate deployment and maint
 
 etcd is a distributed reliable key-value store for the most critical data of a distributed system. etcd is written in Go and uses the Raft consensus algorithm to manage a highly-available replicated log. It is used by Patroni to store information about the status of the cluster and PostgreSQL configuration parameters.
 
+HAProxy is a free, very fast and reliable solution offering high availability, load balancing, and proxying for TCP and HTTP-based applications.
+
 ### Architecture overview:
 
 Etcd three node cluster (DCS:Distributed Consensus Store):
