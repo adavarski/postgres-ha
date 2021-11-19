@@ -14,7 +14,7 @@ When all the nodes are up and running:
 
 <img src="pictures/patroni_streaming_replication.png" width="600">
 
-HAProxy:
+HAProxy(OPTIONAL):
 
 <img src="pictures/haproxy_loadblance_postgres.png" width="600">
 
