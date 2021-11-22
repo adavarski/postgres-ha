@@ -80,10 +80,10 @@ $ cd ../postgresql_cluster
 
 $ ansible-playbook -i ./inventory deploy_pgcluster.yml
 ...
-PLAY RECAP ************************************************************************************************************************************************************************************************************************
-135.181.152.119            : ok=95   changed=60   unreachable=0    failed=0    skipped=316  rescued=0    ignored=0   
-95.217.214.188             : ok=95   changed=60   unreachable=0    failed=0    skipped=316  rescued=0    ignored=0   
-95.217.215.220             : ok=105  changed=61   unreachable=0    failed=0    skipped=329  rescued=0    ignored=0   
+PLAY RECAP *********************************************************************************************************************
+95.217.214.188             : ok=105  changed=61   unreachable=0    failed=0    skipped=329  rescued=0    ignored=0   
+95.217.218.112             : ok=95   changed=60   unreachable=0    failed=0    skipped=316  rescued=0    ignored=0   
+95.217.220.46              : ok=95   changed=60   unreachable=0    failed=0    skipped=316  rescued=0    ignored=0   
 localhost                  : ok=0    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
 
 ### ssh to master and check cluster:
