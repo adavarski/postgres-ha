@@ -60,8 +60,6 @@ $ terraform init
 $ terraform plan
 $ terraform apply
 
-```
-
 % export HCLOUD_TOKEN="XXXXXXXXXXXXXXX"
 
 % hcloud server list
@@ -69,6 +67,7 @@ ID         NAME        STATUS    IPV4             IPV6                      DATA
 16186761   master001   running   95.217.214.188   2a01:4f9:c011:5b28::/64   hel1-dc2
 16186762   slave001    running   95.217.218.112   2a01:4f9:c011:5c48::/64   hel1-dc2
 16186763   slave002    running   95.217.220.46    2a01:4f9:c011:5bd4::/64   hel1-dc2
+```
 
 ### Provisioning PostgreSQL HA Cluster:
 
