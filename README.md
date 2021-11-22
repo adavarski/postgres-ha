@@ -20,6 +20,26 @@ HAProxy (OPTIONAL):
 
 <img src="pictures/haproxy_loadblance_postgres.png" width="600">
 
+### Install needed software hcloud-cli/terraform/ansible on control node (laptop in this example)
+
+```
+Linux:
+
+$ TER_VER=`curl -s https://api.github.com/repos/hashicorp/terraform/releases/latest | grep tag_name | cut -d: -f2 | tr -d \"\,\v | awk '{$1=$1};1'`
+$ wget https://releases.hashicorp.com/terraform/${TER_VER}/terraform_${TER_VER}_linux_amd64.zip
+$ unzip terraform_${TER_VER}_linux_amd64.zip
+$ unzip terraform_${TER_VER}_linux_amd64.zip
+$ sudo mv terraform /usr/local/bin/$ sudo apt update && apt install python3-pip sshpass git -y
+$ sudo pip3 install ansible
+$ wget hcloud-linux-amd64.tar.gz && unzip hcloud-linux-amd64.tar.gz && chmod +x hcloud && sudo mv hcloud /usr/local/bin
+
+Mac:
+
+% brew tap hashicorp/tap
+% brew install hashicorp/tap/terraform
+% brew install ansible
+% brew install hcloud
+```
 
 ### Provision 3 Hetzner Cloud VMs with terraform for ansible testing:
 
@@ -41,16 +61,20 @@ $ terraform plan
 $ terraform apply
 
 ```
-<img src="pictures/postgre-ha-servers.png" width="900">
+
+% export HCLOUD_TOKEN="XXXXXXXXXXXXXXX"
+
+% hcloud server list
+ID         NAME        STATUS    IPV4             IPV6                      DATACENTER
+16186761   master001   running   95.217.214.188   2a01:4f9:c011:5b28::/64   hel1-dc2
+16186762   slave001    running   95.217.218.112   2a01:4f9:c011:5c48::/64   hel1-dc2
+16186763   slave002    running   95.217.220.46    2a01:4f9:c011:5bd4::/64   hel1-dc2
 
 ### Provisioning PostgreSQL HA Cluster:
 
 Note: The cluster is configured with a single primary and two asynchronous streaming replica in this example:
 
 ```
-### Install Ansible on control node (laptop)
-$ sudo apt update && sudo apt install python3-pip sshpass git -y
-$ sudo pip3 install ansible
 
 $ cd ../postgresql_cluster
 ### edit ansible inventory file and run playbook
@@ -65,15 +89,17 @@ localhost                  : ok=0    changed=0    unreachable=0    failed=0    s
 
 ### ssh to master and check cluster:
 
+% ssh root@95.217.214.188
+
 root@master001:~# patronictl topology
-+------------+-----------------+---------+---------+----+-----------+
-| Member     | Host            | Role    | State   | TL | Lag in MB |
-+ Cluster: postgres-cluster (7032066777905394512) -+----+-----------+
-| master001  | 95.217.215.220  | Leader  | running |  1 |           |
-| + slave001 | 95.217.214.188  | Replica | running |  1 |         0 |
-| + slave002 | 135.181.152.119 | Replica | running |  1 |         0 |
-+------------+-----------------+---------+---------+----+-----------+
-root@master001:~# 
++------------+----------------+---------+---------+----+-----------+
+| Member     | Host           | Role    | State   | TL | Lag in MB |
++ Cluster: postgres-cluster (7033339216356814121) +----+-----------+
+| master001  | 95.217.214.188 | Leader  | running |  1 |           |
+| + slave001 | 95.217.218.112 | Replica | running |  1 |         0 |
+| + slave002 | 95.217.220.46  | Replica | running |  1 |         0 |
++------------+----------------+---------+---------+----+-----------+
+
 
 ### Note: postgres user password: postgres-pass
 
@@ -125,10 +151,11 @@ listen region_one
 	option httpchk
 	http-check expect status 200
 	default-server inter 3s fall 3 rise 2 on-marked-down shutdown-sessions
-    	server patroni01 95.217.215.220:6432 maxconn 80 check port 8008
-    	server patroni02 95.217.214.188:6432 maxconn 80 check port 8008
-    	server patroni03 135.181.152.1192:6432 maxconn 80 check port 8008
+    	server patroni01 95.217.214.188:6432 maxconn 80 check port 8008
+    	server patroni02 95.217.218.112:6432 maxconn 80 check port 8008
+    	server patroni03 95.217.220.46:6432 maxconn 80 check port 8008
 ```
+
 
 Other examples with Patroni & Consul/Zookeeper (Note: OLD)
 
