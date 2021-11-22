@@ -26,10 +26,7 @@ HAProxy (OPTIONAL):
 Linux:
 
 $ TER_VER=`curl -s https://api.github.com/repos/hashicorp/terraform/releases/latest | grep tag_name | cut -d: -f2 | tr -d \"\,\v | awk '{$1=$1};1'`
-$ wget https://releases.hashicorp.com/terraform/${TER_VER}/terraform_${TER_VER}_linux_amd64.zip
-$ unzip terraform_${TER_VER}_linux_amd64.zip
-$ unzip terraform_${TER_VER}_linux_amd64.zip
-$ sudo mv terraform /usr/local/bin/$ sudo apt update && apt install python3-pip sshpass git -y
+$ wget https://releases.hashicorp.com/terraform/${TER_VER}/terraform_${TER_VER}_linux_amd64.zip && unzip terraform_${TER_VER}_linux_amd64.zip && chmod +x terraform && sudo mv terraform /usr/local/bin/$ sudo apt update && apt install python3-pip sshpass git -y$ 
 $ sudo pip3 install ansible
 $ wget hcloud-linux-amd64.tar.gz && unzip hcloud-linux-amd64.tar.gz && chmod +x hcloud && sudo mv hcloud /usr/local/bin
 
